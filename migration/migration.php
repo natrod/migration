@@ -81,6 +81,27 @@ class migration
     {
         return $this->new_db;
     }
+	
+	/*
+	*
+	*@return string
+	*/
+	getTableName($name)
+	{
+		return $name
+	}
+	
+	
+	/*
+	*@desc Gets List of unique Customers from the Old Database
+	*@return array of customers
+	*/
+	public function getAllCustomers()
+	{
+		$sql=sprintf("select email from %s GROUP BY email",$this->getTableName('customer_entity'));
+		$conn=$this->getOldDB;
+		$data=$conn->query($sql);
+	}
     
     
 }
